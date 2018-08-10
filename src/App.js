@@ -58,12 +58,14 @@ class Person extends Component {
                 onSubmit={e => {
                   e.preventDefault();
                   context.changeName(input);
+                  // option b: remove function from onSubmit
                 }}
               >
                 <input
                   type="text"
                   value={this.state.value}
-                  onChange={e => context.changeName(e.target.value)}
+                  onChange={e => this.setState({ input: e.target.value })}
+                  // option b: onChange={e => context.changeName(e.target.value)}
                 />
                 <button type="submit">Change Name</button>
               </form>
