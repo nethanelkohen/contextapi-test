@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 // first we will make a new context
 const MyContext = React.createContext('default');
