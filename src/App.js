@@ -8,7 +8,7 @@ class MyProvider extends Component {
   state = {
     name: 'Nate',
     age: 100,
-    cool: true
+    isOn: true
   };
 
   render() {
@@ -19,6 +19,10 @@ class MyProvider extends Component {
           increment: () =>
             this.setState(prevState => {
               return { age: prevState.age + 1 };
+            }),
+          turnOn: () =>
+            this.setState(prevState => {
+              return { isOn: !prevState.isOn };
             }),
           changeName: inputFromChild => {
             this.setState({
@@ -69,6 +73,20 @@ class Person extends Component {
                 />
                 <button type="submit">Change Name</button>
               </form>
+              <div>
+                <p> </p>
+              </div>
+              {context.state.isOn ? (
+                <div>
+                  <button onClick={context.turnOn}>Turn on</button>
+                  <h1>On</h1>
+                </div>
+              ) : (
+                <div>
+                  <button onClick={context.turnOn}>Turn off</button>
+                  <h1>Off</h1>
+                </div>
+              )}
             </React.Fragment>
           )}
         </MyContext.Consumer>
@@ -82,7 +100,7 @@ class App extends Component {
     return (
       <MyProvider>
         <div>
-          <p>I am the app</p>
+          <h1>Context Test</h1>
           <Family />
         </div>
       </MyProvider>
